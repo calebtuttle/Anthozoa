@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Container, Header, Grid, Row, Col } from 'rsuite';
 
 
@@ -18,22 +18,6 @@ function TitleBar() {
           <Col xs={4}></Col>
         </Row>
       </Grid>
-
-
-      {/* <Container>
-        <Grid columns='equal'>
-          <Grid.Column>
-              <Header as='h1' className="title">Anthozoa</Header>
-              <Header as='h4' className="subtitle">A class of marine invertebrates</Header>
-          </Grid.Column>
-
-          <Grid.Column width={5}>
-          </Grid.Column>
-
-          <Grid.Column>
-          </Grid.Column>
-        </Grid>
-      </Container> */}
       <hr />
     </div>
   );

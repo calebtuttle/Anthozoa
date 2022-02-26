@@ -1,9 +1,9 @@
-import React, { Component } from 'react';
+import React from 'react';
 import BasicDropzone from './BasicDropzone';
 import { Container, Header, Content, Footer, Sidebar, Divider, Button, ButtonToolbar, Modal, Grid, Row, Col } from 'rsuite';
 
 
-function DragAndDrop() {
+function DragAndDrop(props) {
 
   const [open, setOpen] = React.useState(false);
   const [size, setSize] = React.useState();
@@ -35,7 +35,7 @@ function DragAndDrop() {
         </Modal.Header>
         <Modal.Body>
 
-          <BasicDropzone />
+          <BasicDropzone uploadFunc={props.uploadFunc} />
         
         </Modal.Body>
         <Modal.Footer>
