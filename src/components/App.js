@@ -10,16 +10,16 @@ import TitleBar from './TitleBar';
 // import FilesList from './FilesList';
 
 
-// const client = create('https://ipfs.infura.io:5001/api/v0');
-// const client = create('/ip4/127.0.0.1/tcp/5001');
-const client = create('http://localhost:8080');
+const ipfs = create('http://localhost:5001');
 
 function App() {
 
   const uploadToIPFS = async (files) => {
     try {
-      const added = await client.addAll(files)
+      const added = await ipfs.add(files[0])
       if (added) console.log('File(s) successfully uploaded...', files);
+      const url = `https://ipfs.io/${added.path}`
+      console.log('file URL: ', url)
     } catch (error) {
       console.log('Error uploading file: ', error)
     }
