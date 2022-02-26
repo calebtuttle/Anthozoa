@@ -1,44 +1,54 @@
 import React, { Component } from 'react';
-import { Container, Modal, Button, Header } from 'semantic-ui-react';
-import Dropzone from 'react-dropzone'
-
 import BasicDropzone from './BasicDropzone';
+import { Container, Header, Content, Footer, Sidebar, Divider, Button, ButtonToolbar, Modal, Grid, Row, Col } from 'rsuite';
 
 
-class DragAndDrop extends Component {
+function DragAndDrop() {
 
-  state = { open: false };
+  const [open, setOpen] = React.useState(false);
+  const [size, setSize] = React.useState();
+  const handleOpen = value => {
+    setSize(value);
+    setOpen(true);
+  };
+  const handleClose = () => setOpen(false);
 
-  render() {
-    return (
-      <div >
-        <Container>
-          <Modal
-            onClose={() => this.setState({ open: false}) }
-            onOpen={() => this.setState({ open: true}) }
-            open={this.state.open}
-            trigger={<Button>Drag and Drop</Button>}
-          >
-            <Modal.Header>Upload a File</Modal.Header>
-            <Modal.Content> 
+  return (
+    <div >
+      <Grid fluid>
+        <Row className="show-grid">
+          <Col xs={4}></Col>
+          <Col xs={16}>
+            <ButtonToolbar>
+              <Button size="lg" onClick={() => handleOpen('lg')}>
+                Upload file(s)
+              </Button>
+            </ButtonToolbar>
+          </Col>
+          <Col xs={4}></Col>
+        </Row>
+      </Grid>
 
-              <BasicDropzone />
+      <Modal size={size} open={open} onClose={handleClose}>
+        <Modal.Header>
+          <Modal.Title>Upload file(s)</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
 
-            </Modal.Content>
-            <Modal.Actions>
-              <Button
-                content="Ok"
-                labelPosition='right'
-                icon='checkmark'
-                onClick={() => this.setState({ open: false}) }
-                positive
-              />
-            </Modal.Actions>
-          </Modal>
-        </Container>
-      </div>
-    );
-  }
+          <BasicDropzone />
+        
+        </Modal.Body>
+        <Modal.Footer>
+          <Button onClick={handleClose} appearance="primary">
+            Ok
+          </Button>
+          <Button onClick={handleClose} appearance="subtle">
+            Cancel
+          </Button>
+        </Modal.Footer>
+      </Modal>
+    </div>
+  );
 }
 
 export default DragAndDrop;
